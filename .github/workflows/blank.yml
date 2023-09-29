@@ -32,4 +32,4 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Validate files
         working-directory: ${{ github.workspace }}
-        run: bash $TEST_DIR/validate_files.sh
+        run: bash "$TEST_DIR"/validate_files.sh
