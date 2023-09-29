@@ -16,21 +16,22 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
-  build:
+  sanity:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
     container:
       image: volgarenok/cxx-test:latest
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
-
-      # Runs a single command using the runners shell
-      - name: Ls command
-        run: ls -lah /$TEST_DIR
-
-      # Runs a set of commands using the runners shell
-      - name: Validate files
+      - name: Branch
+        working-directory: ${{ github.workspace }}
+        run: $TEST_DIR/validate-branch.sh
+        shell: bash
+      - name: Content
         working-directory: ${{ github.workspace }}
         run: $TEST_DIR/validate-files.sh
+        shell: bash
+      - name: Author
+        working-directory: ${{ github.workspace }}
+        run: $TEST_DIR/validate-author.sh
         shell: bash
