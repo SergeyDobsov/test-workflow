@@ -41,3 +41,14 @@ jobs:
         working-directory: ${{ github.workspace }}
         run: $TEST_DIR/validate-student.sh
         shell: bash
+  build:
+    needs: [content, author, branch]
+    runs-on: ubuntu-latest
+    container:
+      image: volgarenok/cxx-test:latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Author
+        working-directory: ${{ github.workspace }}
+        run: $TEST_DIR/build.sh
+        shell: bash
