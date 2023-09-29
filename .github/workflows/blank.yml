@@ -33,5 +33,5 @@ jobs:
         shell: bash
       - name: Author
         working-directory: ${{ github.workspace }}
-        run: $TEST_DIR/validate-author.sh
+        run: $TEST_DIR/validate-student.sh
         shell: bash
