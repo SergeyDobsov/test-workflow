@@ -33,7 +33,7 @@ jobs:
       - name: Validate files
         working-directory: ${{ github.workspace }}
         run: |
-            ls "$TEST_DIR"/validate_files.sh
-            chmod +x "$TEST_DIR"/validate_files.sh
-            "$TEST_DIR"/validate_files.sh
+            ls /"$TEST_DIR"/validate_files.sh
+            chmod +x /"$TEST_DIR"/validate_files.sh
+            /"$TEST_DIR"/validate_files.sh
         shell: bash
