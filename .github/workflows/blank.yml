@@ -57,3 +57,21 @@ jobs:
         with:
           name: labs
           path: ${{ github.workspace }}/out
+  acceptance:
+    needs: [build]
+    runs-on: ubuntu-latest
+    container:
+      image: volgarenok/cxx-test:latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Acceptance
+        working-directory: ${{ github.workspace }}
+        run: |
+          if test -d out ; then find out -type f -exec touch {} + ; fi
+          $TEST_DIR/acceptance-test.sh
+        shell: bash
+      - name: Build results
+        uses: actions/upload-artifact@v3
+        with:
+          name: labs
+          path: ${{ github.workspace }}/out
